@@ -1,0 +1,23 @@
+when CLIENT_ACCEPTED { 
+      if { [class match [IP::client_addr] equals DG_UoB_VPN_Student ] } { 
+        snatpool Student_SNAT-Pool
+      } 
+	  elseif { [class match [IP::client_addr] equals DG_UoB_VPN_Staff ] } {
+        snatpool Staff_SNAT-Pool
+      }
+	  elseif { [class match [IP::client_addr] equals DG_UoB_VPN_NewCore ] } {
+        snatpool NewCore_SNAT-Pool
+	  }
+	  elseif { [class match [IP::client_addr] equals DG_UoB_VPN_Admin ] } {
+	    snatpool UoB_adminVPN_SNAT 
+	  }
+	  elseif { [class match [IP::client_addr] equals DG_UoB_VPN_APP_SD ] } {
+	    snatpool APP-SD_SNAT
+	  }
+	  elseif { [class match [IP::client_addr] equals DG_UoB_VPN_APP_AM ] } {
+	    snatpool APP-AM_SNAT
+	  }
+	  elseif { [class match [IP::client_addr] equals DG_UoB_VPN_DBA ] } {
+	    snatpool DBA_SNAT-Pool
+	  }
+}
