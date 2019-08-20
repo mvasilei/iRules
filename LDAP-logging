@@ -13,7 +13,7 @@ when CLIENT_DATA {
       
       if { $uidstr eq "" } { set $uidstr "anonymous" }
 
-	  log local0. "BindRequest from IP:[IP::client_addr] with username:$uidstr"
+      log local0. "BindRequest from IP:[IP::client_addr] with username:$uidstr"
   }
   
   TCP::release
