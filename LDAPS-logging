@@ -4,7 +4,6 @@ when CLIENTSSL_HANDSHAKE {
 
 when CLIENTSSL_DATA {
   
-  
   binary scan [SSL::payload] x3c offset
   binary scan [SSL::payload] x4c${offset} msgid
   binary scan [SSL::payload] x4x${offset}H2 opcode
@@ -16,8 +15,9 @@ when CLIENTSSL_DATA {
       if { $uidstr eq "" } { set $uidstr "anonymous" }
 
       set systemTime [clock seconds]
-  	  HSL::send [HSL::open -proto UDP -pool Pool_SAV-P-LEM-01] "LOCAL0.NOTICE: [clock format [clock seconds] -format "%b %d %H:%M:%S"] [info hostname] - LDAP - BindRequest from IP:[IP::client_addr] with username:$uidstr"
+  	  HSL::send [HSL::open -proto UDP -pool Pool_SAV-P-LEM-01] "<133> [clock format [clock seconds] -format "%b %d %H:%M:%S"] [info hostname]:LDAPS - BindRequest from IP:[IP::client_addr] with username:$uidstr"
   }
   
   SSL::release
+  SSL::collect
 }
