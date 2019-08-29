@@ -11,7 +11,7 @@ when CLIENT_DATA {
       binary scan [TCP::payload] x4x${offset}x6c offset1
       binary scan [TCP::payload] x4x${offset}x7a${offset1} uidstr
       
-      if { $uidstr eq "" } { set $uidstr "anonymous" }
+      if { $uidstr eq "" } { set uidstr "anonymous" }
 
       log local0. "BindRequest from IP:[IP::client_addr] with username:$uidstr"
   }
