@@ -12,7 +12,7 @@ when CLIENTSSL_DATA {
       binary scan [SSL::payload] x4x${offset}x6c offset1
       binary scan [SSL::payload] x4x${offset}x7a${offset1} uidstr
       
-      if { $uidstr eq "" } { set $uidstr "anonymous" }
+      if { $uidstr eq "" } { set uidstr "anonymous" }
 
       set systemTime [clock seconds]
   	  HSL::send [HSL::open -proto UDP -pool Pool_SAV-P-LEM-01] "<133> [clock format [clock seconds] -format "%b %d %H:%M:%S"] [info hostname]:LDAPS - BindRequest from IP:[IP::client_addr] with username:$uidstr"
