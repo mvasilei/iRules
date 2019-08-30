@@ -9,8 +9,8 @@ when CLIENTSSL_DATA {
   binary scan [SSL::payload] x4x${offset}H2 opcode
   
   if { $opcode == 60 }{
-      binary scan [SSL::payload] x4x${offset}x6c offset1
-      binary scan [SSL::payload] x4x${offset}x7a${offset1} uidstr
+      binary scan [SSL::payload] x4x${offset}x6c uidlen
+      binary scan [SSL::payload] x4x${offset}x7a${uidlen} uidstr
       
       if { $uidstr eq "" } { set uidstr "anonymous" }
 
